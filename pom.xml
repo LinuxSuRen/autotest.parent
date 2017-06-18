@@ -22,7 +22,7 @@
 
 	<groupId>com.surenpi.autotest</groupId>
 	<artifactId>autotest.parent</artifactId>
-	<version>1.0.0-20170618</version>
+	<version>1.0.1-20170618</version>
 
 	<packaging>pom</packaging>
 
