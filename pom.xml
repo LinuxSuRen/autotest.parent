@@ -19,9 +19,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+
 	<groupId>com.surenpi.autotest</groupId>
 	<artifactId>autotest.parent</artifactId>
-	<version>1.0.0-20170504</version>
+	<version>1.0.1-20170618</version>
+
 	<packaging>pom</packaging>
 
 	<name>autotest.parent</name>
@@ -31,6 +33,10 @@
 	<properties>
 		<spring.version>4.3.7.RELEASE</spring.version>
 		<junit.version>4.12</junit.version>
+		<poi.version>3.10.1</poi.version>
+		<selenium.version>3.3.1</selenium.version>
+		<aspectj.version>1.8.7</aspectj.version>
+		<groovy.version>2.4.4</groovy.version>
 		<maven.compiler.encoding>UTF-8</maven.compiler.encoding>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<docSkip>true</docSkip>
@@ -43,7 +49,7 @@
 			<url>http://surenpi.com</url>
 		</license>
 	</licenses>
-
+	
 	<developers>
 		<developer>
 			<id>suren</id>
@@ -54,17 +60,12 @@
 			<url>http://surenpi.com</url>
 		</developer>
 	</developers>
-
+	
 	<organization>
 		<name>suren</name>
 		<url>http://surenpi.com</url>
 	</organization>
-
-  <issueManagement>
-    <url>https://github.com/LinuxSuRen/autotest.parent/issues</url>
-    <system>GitHub Issues</system>
-  </issueManagement>
-
+	
 	<scm>
 		<connection>https://github.com/LinuxSuRen/phoenix.webui.framework.git</connection>
 		<url>https://github.com/LinuxSuRen/phoenix.webui.framework</url>
@@ -98,7 +99,7 @@
 			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
 		</repository>
 	</distributionManagement>
-
+	
 	<build>
 		<plugins>
 			<plugin>
@@ -155,67 +156,11 @@
 				</executions>
 			</plugin>
 		</plugins>
-		<pluginManagement>
-			<plugins>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-gpg-plugin</artifactId>
-					<version>1.5</version>
-					<executions>
-						<execution>
-							<id>sign-artifacts</id>
-							<phase>verify</phase>
-							<goals>
-								<goal>sign</goal>
-							</goals>
-							<configuration>
-								<skip>${signSkip}</skip>
-							</configuration>
-						</execution>
-					</executions>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-javadoc-plugin</artifactId>
-					<version>2.9.1</version>
-					<executions>
-						<execution>
-							<id>attach-javadocs</id>
-							<goals>
-								<goal>jar</goal>
-							</goals>
-						</execution>
-					</executions>
-					<configuration>
-						<aggregate>true</aggregate>
-						<charset>UTF-8</charset>
-						<attach>true</attach>
-						<encoding>UTF-8</encoding>
-						<docencoding>UTF-8</docencoding>
-						<additionalparam>-Xdoclint:none</additionalparam>
-						<skip>${docSkip}</skip>
-					</configuration>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-source-plugin</artifactId>
-					<version>3.0.1</version>
-					<executions>
-						<execution>
-							<id>attach-sources</id>
-							<phase>package</phase>
-							<goals>
-								<goal>jar-no-fork</goal>
-							</goals>
-						</execution>
-					</executions>
-				</plugin>
-			</plugins>
-		</pluginManagement>
 	</build>
 
 	<dependencyManagement>
 		<dependencies>
+			<!-- spring -->
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-context</artifactId>
@@ -239,10 +184,154 @@
 			</dependency>
 
 			<dependency>
+				<groupId>org.aspectj</groupId>
+				<artifactId>aspectjrt</artifactId>
+				<version>${aspectj.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.aspectj</groupId>
+				<artifactId>aspectjweaver</artifactId>
+				<version>${aspectj.version}</version>
+			</dependency>
+
+			<!-- unit test -->
+			<dependency>
 				<groupId>junit</groupId>
 				<artifactId>junit</artifactId>
 				<version>${junit.version}</version>
 				<scope>test</scope>
+			</dependency>
+
+			<!-- poi -->
+			<dependency>
+				<groupId>org.apache.poi</groupId>
+				<artifactId>poi</artifactId>
+				<version>${poi.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.poi</groupId>
+				<artifactId>poi-ooxml</artifactId>
+				<version>${poi.version}</version>
+			</dependency>
+
+			<!-- xml解析 -->
+			<dependency>
+				<groupId>xml-apis</groupId>
+				<artifactId>xml-apis</artifactId>
+				<version>1.4.01</version>
+			</dependency>
+			<dependency>
+				<groupId>dom4j</groupId>
+				<artifactId>dom4j</artifactId>
+				<version>1.6.1</version>
+			</dependency>
+			<dependency>
+				<groupId>jaxen</groupId>
+				<artifactId>jaxen</artifactId>
+				<version>1.1.6</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.ws.xmlschema</groupId>
+				<artifactId>xmlschema-core</artifactId>
+				<version>2.1.0</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.modelmapper</groupId>
+				<artifactId>modelmapper</artifactId>
+				<version>1.0.0</version>
+			</dependency>
+
+			<dependency>
+				<groupId>javax.annotation</groupId>
+				<artifactId>javax.annotation-api</artifactId>
+				<version>1.2</version>
+			</dependency>
+
+			<!-- selenium -->
+			<dependency>
+				<groupId>org.seleniumhq.selenium</groupId>
+				<artifactId>selenium-java</artifactId>
+				<version>${selenium.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.seleniumhq.selenium</groupId>
+				<artifactId>selenium-support</artifactId>
+				<version>${selenium.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.seleniumhq.selenium</groupId>
+				<artifactId>selenium-remote-driver</artifactId>
+				<version>${selenium.version}</version>
+			</dependency>
+
+			<!-- 动态脚本 -->
+			<dependency>
+				<groupId>org.codehaus.groovy</groupId>
+				<artifactId>groovy</artifactId>
+				<version>${groovy.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.codehaus.groovy</groupId>
+				<artifactId>groovy-jsr223</artifactId>
+				<version>${groovy.version}</version>
+			</dependency>
+
+			<!-- 模板引擎 -->
+			<dependency>
+				<groupId>org.freemarker</groupId>
+				<artifactId>freemarker</artifactId>
+				<version>2.3.20</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.yaml</groupId>
+				<artifactId>snakeyaml</artifactId>
+				<version>1.5</version>
+			</dependency>
+
+			<dependency>
+				<groupId>javax.mail</groupId>
+				<artifactId>mail</artifactId>
+				<version>1.4.7</version>
+			</dependency>
+
+			<!-- json -->
+			<dependency>
+				<groupId>net.sf.json-lib</groupId>
+				<artifactId>json-lib</artifactId>
+				<version>2.4</version>
+				<classifier>jdk15</classifier>
+			</dependency>
+
+			<!-- commons -->
+			<dependency>
+				<groupId>commons-lang</groupId>
+				<artifactId>commons-lang</artifactId>
+				<version>2.5</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-codec</groupId>
+				<artifactId>commons-codec</artifactId>
+				<version>1.10</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.httpcomponents</groupId>
+				<artifactId>httpclient</artifactId>
+				<version>4.5.2</version>
+			</dependency>
+
+			<!-- database -->
+			<dependency>
+				<groupId>org.xerial</groupId>
+				<artifactId>sqlite-jdbc</artifactId>
+				<version>3.16.1</version>
+			</dependency>
+			<dependency>
+				<groupId>mysql</groupId>
+				<artifactId>mysql-connector-java</artifactId>
+				<version>5.1.38</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
