@@ -49,7 +49,7 @@
 			<url>http://surenpi.com</url>
 		</license>
 	</licenses>
-	
+
 	<developers>
 		<developer>
 			<id>suren</id>
@@ -60,12 +60,17 @@
 			<url>http://surenpi.com</url>
 		</developer>
 	</developers>
-	
+
 	<organization>
 		<name>suren</name>
 		<url>http://surenpi.com</url>
 	</organization>
-	
+
+  <issueManagement>
+    <url>https://github.com/LinuxSuRen/autotest.parent/issues</url>
+    <system>GitHub Issues</system>
+  </issueManagement>
+
 	<scm>
 		<connection>https://github.com/LinuxSuRen/phoenix.webui.framework.git</connection>
 		<url>https://github.com/LinuxSuRen/phoenix.webui.framework</url>
@@ -99,7 +104,7 @@
 			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
 		</repository>
 	</distributionManagement>
-	
+
 	<build>
 		<plugins>
 			<plugin>
