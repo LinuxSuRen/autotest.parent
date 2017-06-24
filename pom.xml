@@ -43,7 +43,7 @@
 			<url>http://surenpi.com</url>
 		</license>
 	</licenses>
-	
+
 	<developers>
 		<developer>
 			<id>suren</id>
@@ -54,12 +54,17 @@
 			<url>http://surenpi.com</url>
 		</developer>
 	</developers>
-	
+
 	<organization>
 		<name>suren</name>
 		<url>http://surenpi.com</url>
 	</organization>
-	
+
+  <issueManagement>
+    <url>https://github.com/LinuxSuRen/autotest.parent/issues</url>
+    <system>GitHub Issues</system>
+  </issueManagement>
+
 	<scm>
 		<connection>https://github.com/LinuxSuRen/phoenix.webui.framework.git</connection>
 		<url>https://github.com/LinuxSuRen/phoenix.webui.framework</url>
@@ -93,7 +98,7 @@
 			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
 		</repository>
 	</distributionManagement>
-	
+
 	<build>
 		<plugins>
 			<plugin>
@@ -150,6 +155,63 @@
 				</executions>
 			</plugin>
 		</plugins>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-gpg-plugin</artifactId>
+					<version>1.5</version>
+					<executions>
+						<execution>
+							<id>sign-artifacts</id>
+							<phase>verify</phase>
+							<goals>
+								<goal>sign</goal>
+							</goals>
+							<configuration>
+								<skip>${signSkip}</skip>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-javadoc-plugin</artifactId>
+					<version>2.9.1</version>
+					<executions>
+						<execution>
+							<id>attach-javadocs</id>
+							<goals>
+								<goal>jar</goal>
+							</goals>
+						</execution>
+					</executions>
+					<configuration>
+						<aggregate>true</aggregate>
+						<charset>UTF-8</charset>
+						<attach>true</attach>
+						<encoding>UTF-8</encoding>
+						<docencoding>UTF-8</docencoding>
+						<additionalparam>-Xdoclint:none</additionalparam>
+						<skip>${docSkip}</skip>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-source-plugin</artifactId>
+					<version>3.0.1</version>
+					<executions>
+						<execution>
+							<id>attach-sources</id>
+							<phase>package</phase>
+							<goals>
+								<goal>jar-no-fork</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 	</build>
 
 	<dependencyManagement>
