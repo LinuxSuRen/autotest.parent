@@ -12,6 +12,12 @@
 	<url>https://github.com/LinuxSuRen/phoenix.webui.framework</url>
 	<description>WebUI自动化测试框架</description>
 
+	<scm>
+		<connection>scm:git:https://github.com/LinuxSuRen/autotest.parent</connection>
+		<url>https://github.com/LinuxSuRen/autotest.parent</url>
+		<developerConnection>scm:git:https://github.com/LinuxSuRen/autotest.parent</developerConnection>
+	</scm>
+
 	<properties>
 		<spring.version>4.3.7.RELEASE</spring.version>
 		<junit.version>4.12</junit.version>
