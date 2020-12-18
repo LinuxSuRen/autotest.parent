@@ -16,7 +16,7 @@
 		<url>git@github.com:LinuxSuRen/${project.artifactId}.git</url>
 		<developerConnection>scm:git:git@github.com:LinuxSuRen/${project.artifactId}.git</developerConnection>
 	  <tag>HEAD</tag>
-  </scm>
+	</scm>
 
 	<properties>
 		<spring.version>4.3.7.RELEASE</spring.version>
@@ -121,6 +121,10 @@
 						</goals>
 						<configuration>
 							<skip>${signSkip}</skip>
+							<gpgArguments>
+								<arg>--pinentry-mode</arg>
+								<arg>loopback</arg>
+							</gpgArguments>
 						</configuration>
 					</execution>
 				</executions>
