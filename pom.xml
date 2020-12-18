@@ -3,7 +3,7 @@
 
 	<groupId>com.surenpi.autotest</groupId>
 	<artifactId>autotest.parent</artifactId>
-	<version>1.0.1-20170817-SNAPSHOT</version>
+	<version>1.0.1-20170817</version>
 
 	<packaging>pom</packaging>
 
@@ -15,7 +15,7 @@
 		<connection>scm:git:git@github.com:LinuxSuRen/${project.artifactId}.git</connection>
 		<url>git@github.com:LinuxSuRen/${project.artifactId}.git</url>
 		<developerConnection>scm:git:git@github.com:LinuxSuRen/${project.artifactId}.git</developerConnection>
-	  <tag>HEAD</tag>
+	  <tag>v1.0.1-20170817</tag>
 	</scm>
 
 	<properties>
